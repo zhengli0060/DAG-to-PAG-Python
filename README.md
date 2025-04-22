@@ -1,4 +1,4 @@
-# DAG_to_PAG_Python 🚀
+# DAG to PAG Python 🚀
 
 A Python tool for converting Directed Acyclic Graphs (DAGs) into Partial Ancestral Graphs (PAGs) using the [causal-learn](https://github.com/cmu-phil/causal-learn) package.
 
