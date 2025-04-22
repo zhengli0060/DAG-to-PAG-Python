@@ -96,7 +96,7 @@ class ErdosRenyi(GraphGenerator):
     """
     Generator of Erdos-Renyi directed acyclic graphs.
 
-    This class is a wrapper of the Erdos-Renyi graph sampler of the ``igraph`` Python packege.
+    This class is a wrapper of the Erdos-Renyi graph sampler of the ``igraph`` Python package.
 
     Parameters
     ----------
@@ -115,7 +115,7 @@ class ErdosRenyi(GraphGenerator):
         with all nodes connected.
     def_topological_order: bool, default True
         If True, the generated graph will be returned in topological order.
-        If False, the graph will be returned not in topological order.
+        If False, the graph will may be returned not in topological order.
     def_dataframe: bool, default False
         If True, the generated graph will be returned as a pandas dataframe.
         If False, the graph will be returned as a numpy array.
