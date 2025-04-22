@@ -144,10 +144,10 @@ def DAG_to_PAG(adj_matrix: Union[pd.DataFrame, np.array], latent_nodes: list[Uni
     #     j = self.node_map[node2]
     #     self.graph[j, i] = 1
     #     self.graph[i, j] = -1
-        # TAIL = -1
-        # NULL = 0
-        # ARROW = 1
-        # CIRCLE = 2
+    # TAIL = -1
+    # NULL = 0
+    # ARROW = 1
+    # CIRCLE = 2
     #######################################################
     pag_graph_node_name = [node.get_name() for node in pag.node_map.keys()]
     pag_graph_df = pd.DataFrame(pag.graph.T, columns=pag_graph_node_name, index=pag_graph_node_name) 
@@ -161,20 +161,30 @@ def DAG_to_PAG(adj_matrix: Union[pd.DataFrame, np.array], latent_nodes: list[Uni
 if __name__ == "__main__":
 
     # Example usage
+    # Define parameters for the Erdos-Renyi random graph
     num_nodes = 5
     expected_degree = 2
+    seed = 12
 
-    ER_graph_gen = ErdosRenyi(num_nodes, expected_degree, def_dataframe=False, seed=12)
+    # Generate a random adjacency matrix as a NumPy array
+    print("Generating Erdos-Renyi random graph as a NumPy array...")
+    ER_graph_gen_np = ErdosRenyi(num_nodes, expected_degree, def_dataframe=False, seed=seed)
+    adj_matrix_np = ER_graph_gen_np.get_random_graph()
+    print("Adjacency matrix (NumPy array):\n", adj_matrix_np)
 
+    # Convert the DAG to a PAG with latent nodes
+    print("Converting DAG to PAG with latent nodes [0]...")
+    pag_np = DAG_to_PAG(adj_matrix_np, latent_nodes=[0])
+    print("PAG adjacency matrix (NumPy array):\n", pag_np)
 
-    adj_matrix = ER_graph_gen.get_random_graph()
-    print("Pretreatment adjacency matrix:\n", adj_matrix)
-    pag = DAG_to_PAG(adj_matrix, latent_nodes=[0])
-    print("PAG adjacency matrix:\n", pag)
+    # Generate a random adjacency matrix as a Pandas DataFrame
+    print("\nGenerating Erdos-Renyi random graph as a Pandas DataFrame...")
+    ER_graph_gen_df = ErdosRenyi(num_nodes, expected_degree, def_dataframe=True, seed=seed)
+    adj_matrix_df = ER_graph_gen_df.get_random_graph()
+    print("Adjacency matrix (Pandas DataFrame):\n", adj_matrix_df)
 
-    ER_graph_gen = ErdosRenyi(num_nodes, expected_degree, def_dataframe=True, seed=12)
-    adj_matrix = ER_graph_gen.get_random_graph()
-    print("Pretreatment adjacency matrix:\n", adj_matrix)
-    pag = DAG_to_PAG(adj_matrix, latent_nodes=['V1'])
-    print("PAG adjacency matrix:\n", pag)
+    # Convert the DAG to a PAG with latent nodes
+    print("Converting DAG to PAG with latent nodes ['V1']...")
+    pag_df = DAG_to_PAG(adj_matrix_df, latent_nodes=['V1'])
+    print("PAG adjacency matrix (Pandas DataFrame):\n", pag_df)
 
