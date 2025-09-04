@@ -8,3 +8,5 @@ A Python tool for converting Directed Acyclic Graphs (DAGs) into Partial Ancestr
 - ✅ Ensures compatibility with causal-learn's graph representation.
 
 > Note: When the number of nodes is large, dag2pag runs slowly.
+
+- For cases without selection bias, [FastDAG2PAG-python](https://github.com/zhengli0060/FastDAG2PAG-python) is recommended because it’s significantly faster.
